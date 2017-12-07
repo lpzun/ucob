@@ -1,0 +1,15 @@
+decl t := *;
+void main() begin
+decl m := 0;
+0: skip;
+1: goto 2,3;
+2: start_thread goto 3;
+3: t := 0;
+4: goto 5,8;
+5: assume(t);
+6: m := 1;
+7: goto 9;
+8: assume(!t);
+9: t := !t;
+10: assert(!m);
+end

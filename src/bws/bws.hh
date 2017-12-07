@@ -12,7 +12,7 @@
 #include "../util/debug.hh"
 #include "../util/refs.hh"
 
-#include "ijit.hh"
+#include "../../../ijit/src/ijit.hh"
 
 using namespace ijit;
 
@@ -22,20 +22,21 @@ using antichain = deque<prog_state>;
 
 class BWS {
 public:
-    BWS();
-    ~BWS();
+	BWS();
+	~BWS();
+
+	bool coverability_analysis(const string& filename);
 
 private:
-    deque<prog_thread> initl_TS;
-    deque<prog_thread> final_TS;
+	unordered_map<uint, set<local_state>> initl_TS;
+	deque<prog_thread> final_TS;
 
-    bool standard_BWS();
+	bool standard_BWS();
 
-    bool is_reached(const prog_state& tau);
-    bool is_covered(const prog_state& tau1, const prog_state& tau2);
-    bool is_minimal(const prog_state& tau, const antichain& W);
-    void minimize(const prog_state& tau, antichain& W);
-
+	bool is_reached(const prog_state& tau);
+	bool is_covered(const prog_state& tau1, const prog_state& tau2);
+	bool is_minimal(const prog_state& tau, const antichain& W);
+	void minimize(const prog_state& tau, antichain& W);
 };
 
 } /* namespace ucob */

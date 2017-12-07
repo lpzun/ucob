@@ -1,0 +1,14 @@
+decl x, a_c;
+void main() begin
+decl y, b;
+decl z;
+x := *;
+a_c := *;
+0: x := !(y & ( z | (b & a_c)));
+1: goto 2, 3;
+//comments
+2: y := x & z;
+3: a_c := *;
+4: assert(x);
+5: skip;
+end

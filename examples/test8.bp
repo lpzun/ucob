@@ -1,0 +1,15 @@
+decl g1 := *;
+decl g2 := *;
+void main() begin
+    decl l := 0;
+ 0: g1,g2 := 0,0;
+ 1: start_thread goto 3;
+ 2: skip;
+ 3: goto 4, 7;
+ 4: assume(g1);
+ 5: l := g1;
+ 6: goto 8;
+ 7: assume(!g1);
+ 8: g1,g2 := !g1,1;
+ 9: assert(!g2|!l);
+end

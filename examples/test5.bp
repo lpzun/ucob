@@ -1,0 +1,12 @@
+void main() begin
+decl l0:=0, l1:=1, l2:=0, l3:=0;
+0: l0,l1:=0,0;
+1: goto 2, 6; 
+2: assume(l0); 
+3: l1:=1; 
+4: l2,l3:=l0,1;
+5: goto 7; 
+6: assume(!l0);
+7: l0,l1:=!l0,l2;
+8: assert(l1); // must be same as "skip"
+end

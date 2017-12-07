@@ -1,0 +1,21 @@
+decl s1 := *;
+decl s2 := *;
+void main() begin
+    decl l := 0;
+ 0: s1,s2 := s1|l,s1 constrain s2;
+ 1: start_thread goto 3;
+ 2: skip;
+ 3: goto 4, 7;
+ 4: assume(s1);
+ 5: l := s1;
+ 6: goto 8;
+ 7: assume(!s1);
+ 8: s1,s2 := !s1,1;
+ 9: assert(!s2|!l);
+10: end_thread;
+11: if s1&!s2 then goto 8; fi;
+12: atomic_begin;
+13: assume(!s2);
+14: s1,s2 := 1,* constrain s1; // skip;
+15: atomic_end;
+end

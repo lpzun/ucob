@@ -12,19 +12,22 @@ namespace ucob {
 
 class refer {
 public:
-    refer();
-    ~refer();
+	refer();
+	~refer();
 
-    static bool OPT_PRINT_ALL;
-    static bool OPT_PRINT_CMD;
-    static bool OPT_PRINT_ADJ;
+	static bool OPT_PRINT_INITL_TS;
+	static bool OPT_PRINT_FINAL_TS;
 
-    static bool OPT_INPUT_TTS;
+	static bool OPT_PRINT_ALL;
+	static bool OPT_PRINT_CMD;
+	static bool OPT_PRINT_ADJ;
 
-    /// global variable for elapsed time
-    static clock_t ELAPSED_TIME;
+	static bool OPT_INPUT_TTS;
 
-    static const ushort omega;
+	/// global variable for elapsed time
+	static clock_t ELAPSED_TIME;
+
+	static const ushort omega;
 
 };
 } /* namespace SURA */

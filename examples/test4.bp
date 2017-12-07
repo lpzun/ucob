@@ -1,0 +1,21 @@
+decl s0:=1, s1:=0;
+decl l0:=0, l1:=1, l2:=0, l3:=0;
+void main() begin
+0: s0:=0;
+1: l1:=0; 
+2: goto 3, 8;
+3: assume(s0); 
+4: s1:=1; 
+5: l2:=s0; 
+6: l3:=1; 
+7: goto 9; 
+8: assume(!s0);
+//13: assert(!s0&!l1);
+9: s0:=!s0;
+10: l0:=l2;
+//11: assert(!s0 & !s1 & l0);
+11: assert(!s1);
+12: s0,s1,l1,l2,l3:=s1,s0,l2,l1,l0;
+13: s0,s1 := s1,s0;
+end
+

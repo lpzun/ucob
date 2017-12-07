@@ -18,8 +18,12 @@ refer::~refer() {
 }
 bool refer::OPT_INPUT_TTS = false;
 
-bool refer::OPT_PRINT_ADJ = false;
 bool refer::OPT_PRINT_CMD = false;
+bool refer::OPT_PRINT_INITL_TS = false;
+bool refer::OPT_PRINT_FINAL_TS = false;
+
+/// used now
+bool refer::OPT_PRINT_ADJ = false;
 bool refer::OPT_PRINT_ALL = false;
 
 clock_t refer::ELAPSED_TIME = clock();

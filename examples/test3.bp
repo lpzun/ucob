@@ -1,0 +1,12 @@
+decl x:=1, y:=0;
+void main() begin
+0: x := 0; 
+1: goto 2,5; 
+2: assume(x); 
+3: y := 1; 
+4: goto 6;
+8: if !x then goto 7; fi; 
+5: assume(!x); 
+6: x:=!x; 
+7: assert(!y);
+end
