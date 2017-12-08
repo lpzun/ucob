@@ -43,7 +43,7 @@
                             							
                             <tool id="cdt.managedbuild.tool.macosx.cpp.linker.macosx.exe.debug.589859526" name="MacOS X C++ Linker" superClass="cdt.managedbuild.tool.macosx.cpp.linker.macosx.exe.debug">
                                 								
-                                <option id="macosx.cpp.link.option.libs.1954244948" name="Libraries (-l)" superClass="macosx.cpp.link.option.libs" useByScannerDiscovery="false" valueType="libs"/>
+                                <option id="macosx.cpp.link.option.libs.1954244948" name="Libraries (-l)" superClass="macosx.cpp.link.option.libs" useByScannerDiscovery="false"/>
                                 								
                                 <option id="macosx.cpp.link.option.paths.400459395" name="Library search path (-L)" superClass="macosx.cpp.link.option.paths" useByScannerDiscovery="false" valueType="libPaths">
                                     									
@@ -63,7 +63,7 @@
                             							
                             <tool id="cdt.managedbuild.tool.gnu.assembler.macosx.exe.debug.372008280" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.macosx.exe.debug">
                                 								
-                                <option id="gnu.both.asm.option.include.paths.1536169544" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+                                <option id="gnu.both.asm.option.include.paths.1536169544" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
                                     									
                                     <listOptionValue builtIn="false" value="/Users/lpzun/Peizun/Develop/C++/workspace/ijit/src"/>
                                     								
@@ -83,7 +83,7 @@
                                 								
                                 <option id="gnu.cpp.compiler.option.dialect.std.140990665" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" useByScannerDiscovery="true" value="gnu.cpp.compiler.dialect.c++1y" valueType="enumerated"/>
                                 								
-                                <option id="gnu.cpp.compiler.option.include.paths.1888034005" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath"/>
+                                <option id="gnu.cpp.compiler.option.include.paths.1888034005" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false"/>
                                 								
                                 <inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1918232646" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
                                 							
@@ -108,6 +108,8 @@
                         <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="ijit"/>
                         						
                         <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+                        						
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="test"/>
                         					
                     </sourceEntries>
                     				
@@ -204,6 +206,8 @@
                     <sourceEntries>
                         						
                         <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+                        						
+                        <entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="test"/>
                         					
                     </sourceEntries>
                     				

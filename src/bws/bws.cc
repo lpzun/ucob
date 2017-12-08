@@ -22,14 +22,14 @@ bool BWS::coverability_analysis(const string& filename) {
 
 	cout << "initial states...\n";
 	for (const auto& i : states.first) {
-		cout << i << endl;
+		cout << " " << i << "\n";
 		initl_TS[i.get_s().get_vars().to_ulong()].emplace(i.get_l());
 	}
 
 	final_TS = states.second;
 	cout << "target states...\n";
 	for (const auto& f : final_TS) {
-		cout << f << endl;
+		cout << " " << f << "\n";
 	}
 	return standard_BWS();
 }
@@ -43,21 +43,11 @@ bool BWS::coverability_analysis(const string& filename) {
 bool BWS::standard_BWS() {
 	/// step 0: set up the preliminaries needed for BWS
 	///   (1) initialize worklist
-	queue<prog_state, deque<prog_state>> worklist;
+	pri_queue worklist;
 
 	for (const auto& final : final_TS) {
-		worklist.emplace(final.get_s(), final.get_l());
+		worklist.enqueue(prog_state(final.get_s(), final.get_l()));
 	}
-	/*
-	 shared_state s(1);
-	 local_state l1(5, 0);
-	 local_state l2(10, 0);
-	 ca_locals locals;
-	 locals.emplace(l1, 1);
-	 locals.emplace(l2, 1);
-	 worklist.emplace(s, locals);
-
-	 */
 
 	///   (2) the set of already expanded states
 	vector<antichain> expanded(1 << ijit::refs::SV_NUM);
@@ -66,8 +56,7 @@ bool BWS::standard_BWS() {
 	pre_image preimage;
 
 	while (!worklist.empty()) {
-		const auto _tau = worklist.front();
-		worklist.pop();
+		const auto _tau = worklist.dequeue();
 
 		/// step 1: if \exists t \in <expanded> such that
 		///         t <= _tau then discard _tau
@@ -76,20 +65,22 @@ bool BWS::standard_BWS() {
 			continue;
 		}
 
-		cout << "tau' = " << _tau << endl;
+		DEBUG_STD(cout << "tau' = " << _tau << endl
+				;)
 
 		/// step 2: compute all cover preimages and handle
 		///         them one by one
 		const auto& images = preimage.step(_tau, prev::COV);
 		for (const auto& tau : images) {
 			/// if tau \in upward(T_init), return true;
-			cout << "  " << tau << endl;
+			DEBUG_STD(cout << "  " << tau << endl
+					;)
 			if (is_reached(tau)) {
-				cout << "reachable........." << tau << endl;
+				cout << "Reachable at " << tau << "\n";
 				return true;
 			}
 			/// otherwise, push \tau into the worklist.
-			worklist.emplace(tau);
+			worklist.enqueue(tau);
 		}
 		/// step 5: insert _tau into the expanded states
 		minimize(_tau, expanded[s]);
@@ -186,6 +177,39 @@ bool BWS::is_covered(const prog_state& tau1, const prog_state& tau2) {
 		}
 	}
 	return true;
+}
+
+/**
+ *
+ * @param worklist
+ * @param tau
+ */
+void pri_queue::enqueue(const prog_state& tau) {
+	size_tc threads = 0;
+	for (const auto& p : tau.get_locals()) {
+		threads += p.second;
+	}
+	while (worklist.size() < threads)
+		worklist.emplace_back(queue<prog_state, deque<prog_state>>());
+	worklist[threads - 1].emplace(tau);
+}
+
+bool pri_queue::empty() {
+	id = 0;
+	while (id < worklist.size() && worklist[id].empty())
+		++id;
+	return id == worklist.size();
+}
+
+/**
+ *
+ * @param worklist
+ * @return a program state
+ */
+prog_state pri_queue::dequeue() {
+	auto tau = worklist[id].front();
+	worklist[id].pop();
+	return tau;
 }
 
 } /* namespace ucob */

@@ -217,6 +217,7 @@ private:
     string VERSION;
 
     ushort name_width;
+    ushort extra_width;
     const string help_message;
     string v_info;
 

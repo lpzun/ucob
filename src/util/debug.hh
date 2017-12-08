@@ -10,21 +10,16 @@
 #ifndef DEBUG_HH_
 #define DEBUG_HH_
 
-#define NDEBUG
+//#define DEBUGGING
 
-#ifndef NDEBUG
-#define DEBUG_MODE
+#ifdef DEBUGGING
+#  define DEBUG_LOG(x) std::cerr << x <<"\n";
+#  define DEBUG_STD(x) x;
+#  define DEBUG_LOC() std::cerr <<__func__<<" I am here ..."<<"\n";
 #else
-#endif
-
-#ifdef DEBUG_MODE
-#  define DBG_LOG(x) std::cerr << x <<"\n";
-#  define DBG_STD(x) x;
-#  define DBG_LOC() std::cerr <<__func__<<" I am here ..."<<"\n";
-#else
-#  define DBG_LOG(x)
-#  define DBG_STD(x)
-#  define DBG_LOC();
+#  define DEBUG_LOG(x)
+#  define DEBUG_STD(x)
+#  define DEBUG_LOC();
 #endif // DEBUG
 
 namespace ucob {

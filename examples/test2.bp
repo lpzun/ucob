@@ -4,7 +4,7 @@ decl a;
 void main() begin
 
 decl l := 1;
-s := *;
+s := *; // initialize s here
 
 0: s := 0;
 1: l := 1; 

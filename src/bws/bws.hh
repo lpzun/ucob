@@ -39,6 +39,24 @@ private:
 	void minimize(const prog_state& tau, antichain& W);
 };
 
+class pri_queue {
+public:
+	pri_queue() :
+			id(0), worklist() {
+	}
+
+	~pri_queue() {
+	}
+
+	bool empty();
+	void enqueue(const prog_state& e);
+	prog_state dequeue();
+
+private:
+	size_tc id;
+	vector<queue<prog_state, deque<prog_state>>> worklist;
+};
+
 } /* namespace ucob */
 
 #endif /* BWS_BWS_HH_ */

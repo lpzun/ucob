@@ -9,7 +9,8 @@
 
 cmd_line::cmd_line() :
 		SHORT_HELP_OPT("-h"), LONG_HELP_OPT("--help"), SHORT_VERSION_OPT("-v"), ///
-		LONG_VERSION_OPT("--version"), VERSION("v1.1"), name_width(0), help_message(
+		LONG_VERSION_OPT("--version"), VERSION("v1.1"), name_width(0), extra_width(
+				10), help_message(
 				"Use " + string(SHORT_HELP_OPT) + " or " + string(LONG_HELP_OPT)
 						+ " for help"), v_info(), options(), switches(), types() {
 	this->create_argument_list();
@@ -97,11 +98,12 @@ void cmd_line::get_command_line(const string& prog,
 void cmd_line::add_option(const short& type, const string& short_name,
 		const string& long_name, const string& meaning,
 		const string& default_value) {
-	this->options[type].push_back(
-			Options(type, short_name, long_name, meaning, default_value));
+	this->options[type].emplace_back(type, short_name, long_name, meaning,
+			default_value);
 	this->name_width =
-			name_width < short_name.size() + long_name.size() + 5 ?
-					short_name.size() + long_name.size() + 5 : name_width;
+			name_width < short_name.size() + long_name.size() + extra_width ?
+					short_name.size() + long_name.size() + extra_width :
+					name_width;
 }
 
 /**
@@ -113,11 +115,11 @@ void cmd_line::add_option(const short& type, const string& short_name,
  */
 void cmd_line::add_switch(const short& type, const string& short_name,
 		const string& long_name, const string& meaning) {
-	this->switches[type].push_back(
-			Switch(type, short_name, long_name, meaning));
+	this->switches[type].emplace_back(type, short_name, long_name, meaning);
 	this->name_width =
-			name_width < short_name.size() + long_name.size() + 5 ?
-					short_name.size() + long_name.size() + 5 : name_width;
+			name_width < short_name.size() + long_name.size() + extra_width ?
+					short_name.size() + long_name.size() + extra_width :
+					name_width;
 }
 
 /**
@@ -173,14 +175,9 @@ void cmd_line::print_usage_info(const string& prog_name, cushort& indent,
 					PPRINT::alignment::LEFTJUST)
 			<< PPRINT::widthify("show help message", 0,
 					PPRINT::alignment::LEFTJUST) << "\n";
-	out << " "
-			<< PPRINT::widthify(prog_name + " source.bp ", this->name_width,
-					PPRINT::alignment::LEFTJUST)
-			<< PPRINT::widthify("check given program", 0,
-					PPRINT::alignment::LEFTJUST) << "\n";
 
 	for (size_t i = 0; i < types.size(); i++) {
-		out << types[i] << "\n";
+		out << types[i] << (types.size() > 0 ? "\n" : "");
 		auto iopts = options.find(i);
 		if (iopts != options.end())
 			for (auto iopt = iopts->second.begin(); iopt != iopts->second.end();
@@ -190,9 +187,7 @@ void cmd_line::print_usage_info(const string& prog_name, cushort& indent,
 								iopt->get_short_name() + " ["
 										+ iopt->get_long_name() + "] arg",
 								this->name_width, PPRINT::alignment::LEFTJUST)
-						<< PPRINT::widthify(
-								PPRINT::widthify(iopt->get_meaning(),
-										this->name_width + 2), 0,
+						<< PPRINT::widthify(iopt->get_meaning(), 0,
 								PPRINT::alignment::LEFTJUST) << "\n";
 			}
 
@@ -208,8 +203,6 @@ void cmd_line::print_usage_info(const string& prog_name, cushort& indent,
 						<< PPRINT::widthify(iswt->get_meaning(), 0,
 								PPRINT::alignment::LEFTJUST) << "\n";
 			}
-
-		out << endl;
 	}
 }
 
@@ -223,8 +216,6 @@ void cmd_line::create_argument_list() {
 	v_info = create_version_info();
 
 	this->set_types(types);
-	this->add_switch(default_opts(), SHORT_HELP_OPT, LONG_HELP_OPT,
-			"help information");
 
 	/// problem instance
 	this->add_option(prob_inst_opts(), "-f", "--input-file",
@@ -233,12 +224,12 @@ void cmd_line::create_argument_list() {
 			"print initial thread states");
 	this->add_switch(prob_inst_opts(), "-a", "--target",
 			"print target thread states");
-	this->add_switch(prob_inst_opts(), "-l", "--adj-list",
-			"show the adjacency list");
+//	this->add_switch(prob_inst_opts(), "-l", "--adj-list",
+//			"show the adjacency list");
 
 	/// other options
-	this->add_switch(other_opts(), "-cmd", "--cmd-line",
-			"show the command line");
+	this->add_switch(other_opts(), SHORT_HELP_OPT, LONG_HELP_OPT,
+			"help information");
 	this->add_switch(other_opts(), SHORT_VERSION_OPT, LONG_VERSION_OPT,
 			"show version information and exit");
 }
