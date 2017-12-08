@@ -17,6 +17,16 @@ UCOB depends the API [IJIT](https://github.com/lpzun/ijit). To run UCOB, you fir
 >     git clone the github repository
 >     make
 
+##### 3. Dynamically Loading IJIT
+
+###### Linux
+>     LD_LIBRARY_PATH=/your/path/lib
+>     export LD_LIBRARY_PATH
+
+###### MAC OSX
+>     DYLD_FALLBACK_LIBRARY_PATH=/your/path/lib/
+>     export DYLD_FALLBACK_LIBRARY_PATH
+
 ## Usage
 For instructions on how to use UCOB, run the tool as follows:
 >     ucob -h
