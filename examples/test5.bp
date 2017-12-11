@@ -1,3 +1,9 @@
+/////////////////////////////////////////////////
+// Features:
+//   0 shared variable
+//   4 local variables
+//   if statement
+/////////////////////////////////////////////////
 void main() begin
 decl l0:=0, l1:=1, l2:=0, l3:=0;
 0: l0,l1:=0,0;

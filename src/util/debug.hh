@@ -10,7 +10,7 @@
 #ifndef DEBUG_HH_
 #define DEBUG_HH_
 
-//#define DEBUGGING
+#define DEBUGGING
 
 #ifdef DEBUGGING
 #  define DEBUG_LOG(x) std::cerr << x <<"\n";

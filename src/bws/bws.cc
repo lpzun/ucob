@@ -17,6 +17,13 @@ BWS::~BWS() {
 
 }
 
+/**
+ * Backward converability analysis.
+ * @param filename
+ * @return bool
+ *         true : if any target state is coverable;
+ *         false: otherwise.
+ */
 bool BWS::coverability_analysis(const string& filename) {
 	const auto& states = parser::parse(filename, mode::PREV);
 

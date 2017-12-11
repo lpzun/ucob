@@ -220,10 +220,10 @@ void cmd_line::create_argument_list() {
 	/// problem instance
 	this->add_option(prob_inst_opts(), "-f", "--input-file",
 			"a Boolean program", "X");
-	this->add_switch(prob_inst_opts(), "-i", "--initial",
-			"print initial thread states");
-	this->add_switch(prob_inst_opts(), "-a", "--target",
-			"print target thread states");
+//	this->add_switch(prob_inst_opts(), "-i", "--initial",
+//			"print initial thread states");
+//	this->add_switch(prob_inst_opts(), "-a", "--target",
+//			"print target thread states");
 //	this->add_switch(prob_inst_opts(), "-l", "--adj-list",
 //			"show the adjacency list");
 

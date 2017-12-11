@@ -1,3 +1,10 @@
+/////////////////////////////////////////////////
+// Features:
+//   2 shared variables
+//   1 local variable
+//   if statement
+//   parallel assignements with constrains
+/////////////////////////////////////////////////
 decl t := *;
 void main() begin
 decl m := 0;

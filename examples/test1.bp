@@ -1,3 +1,10 @@
+/////////////////////////////////////////////////
+// Features:
+//   2 shared variables
+//   3 local variables
+//   one shared variable is initialized inside 
+//   function body
+/////////////////////////////////////////////////
 decl x, a_c;
 void main() begin
 decl y, b;
