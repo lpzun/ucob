@@ -51,7 +51,7 @@ public:
 	bool empty();
 	void enqueue(const prog_state& e);
 	prog_state dequeue();
-
+	size_t size();
 private:
 	size_tc id;
 	vector<queue<prog_state, deque<prog_state>>> worklist;

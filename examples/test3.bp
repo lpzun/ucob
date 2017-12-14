@@ -3,6 +3,7 @@
 //   2 shared variables
 //   0 local variable
 //   if statement
+// The program is safe, aka targets are unreachable
 /////////////////////////////////////////////////
 decl x:=1, y:=0;
 void main() begin

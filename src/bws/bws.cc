@@ -73,7 +73,7 @@ bool BWS::standard_BWS() {
 		}
 
 		DEBUG_STD(cout << "tau' = " << _tau << endl
-				;)
+		;)
 
 		/// step 2: compute all cover preimages and handle
 		///         them one by one
@@ -81,7 +81,7 @@ bool BWS::standard_BWS() {
 		for (const auto& tau : images) {
 			/// if tau \in upward(T_init), return true;
 			DEBUG_STD(cout << "  " << tau << endl
-					;)
+			;)
 			if (is_reached(tau)) {
 				cout << "Reachable at " << tau << "\n";
 				return true;
@@ -217,6 +217,14 @@ prog_state pri_queue::dequeue() {
 	auto tau = worklist[id].front();
 	worklist[id].pop();
 	return tau;
+}
+
+size_t pri_queue::size() {
+	size_t size = 0;
+	for (const auto& q : worklist) {
+		size += q.size();
+	}
+	return size;
 }
 
 } /* namespace ucob */
