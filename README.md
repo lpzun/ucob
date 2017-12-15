@@ -28,7 +28,7 @@ UCOB depends the API [IJIT](https://github.com/lpzun/ijit). To run UCOB, you fir
 >     export DYLD_FALLBACK_LIBRARY_PATH
 
 ## Usage
-For instructions on how to use UCOB, run the tool as follows:
+For instructions to use UCOB, run the tool as follows:
 >     ucob -h
 
 ##### Boolean programs
