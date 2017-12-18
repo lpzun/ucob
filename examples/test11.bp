@@ -1,0 +1,43 @@
+void main() begin
+0: skip; // location only
+1: skip; // no predicates changed
+2: skip; // no predicates changed
+3: skip; // no predicates changed
+4: skip; // no predicates changed
+5: skip; // location only
+6: skip; // location only
+7: if 0 then goto 32; fi;
+8: start_thread goto 10;
+9: goto 31;
+10: skip; // location only
+11: skip; // no predicates changed
+12: skip; // no predicates changed
+13: skip; // no predicates changed
+14: skip; // no predicates changed
+15: if !(*) then goto 18; fi;
+16: skip; // no predicates changed
+17: goto 29;
+18: skip; // no predicates changed
+19: atomic_begin;
+20: if !(*) then goto 24; fi;
+21: skip; // no predicates changed
+22: skip; // no predicates changed
+23: goto 25;
+24: skip; // no predicates changed
+25: atomic_end;
+26: if * then goto 14; fi;
+27: assert(!(*));
+28: skip; // no predicates changed
+29: skip; // location only
+30: end_thread;
+31: goto 7;
+32: skip; // no predicates changed
+33: skip; // location only
+34: skip;
+end
+void c$$__CPROVER_initialize() begin
+end
+void c$$thr1() begin
+end
+void c$$main() begin
+end

@@ -1,9 +1,9 @@
 ################################################################################
-#  NOTE: This is a shell script for bopp preprocessor. It aims at translating # 
-#  SatAbs BP to Our BP: mainly renaming labels                                #
-#                                                                             #
-#  INPUT  : a SatAbs Boolean program file                                     #
-#  OUTPUT : a Boolen progran with out format                                  #
+#  NOTE: This is a shell script for bopp preprocessor. It aims at translating  # 
+#  SatAbs BP to Our BP: mainly renaming labels                                 #
+#                                                                              #
+#  INPUT  : a SatAbs Boolean program file                                      #
+#  OUTPUT : a Boolen progran with out format                                   #
 ################################################################################
 #!/bin/bash                                                                 # 
 JAVA=java
@@ -13,9 +13,9 @@ PYTHON=python
 PYTHON_EXE=BoPP.py          # Python preprocessor
 
 ################################################################################
-# The following code goes through all Boolean programs in a given directory   #
-# specified by paramter [-d | --dir]; you can also specify which translator   #
-# to use: the java version or the python version                              #
+#  The following code goes through all Boolean programs in a given directory   #
+#  specified by paramter [-d | --dir]; you can also specify which translator   #
+#  to use: the java version or the python version                              #
 ################################################################################
 DIR=          #
 IS_JAVA=0     #
@@ -35,6 +35,7 @@ while [ "$1" != "" ]; do
     esac
     shift
 done
+
 echo -n "Preprocessing Boolean programs in ${DIR} with "
 if [ ${IS_JAVA} = 1 ]; then
 	echo "${JAVA_EXE}"
